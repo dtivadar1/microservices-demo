@@ -33,6 +33,16 @@ spec:
         ports:
         - containerPort: 7070
         env:
+        - name: SPLUNK_OTEL_AGENT
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "http://$(SPLUNK_OTEL_AGENT):4317"
+        - name: OTEL_SERVICE_NAME
+          value: "test1"
+        - name: OTEL_RESOURCE_ATTRIBUTES
+          value: "deployment.environment=dev"
         - name: REDIS_ADDR
           value: "redis-cart:6379"
         resources:
