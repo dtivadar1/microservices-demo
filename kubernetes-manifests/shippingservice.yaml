@@ -34,14 +34,14 @@ spec:
         env:
         - name: SPLUNK_OTEL_AGENT
           valueFrom:
-              fieldRef:
+            fieldRef:
               fieldPath: status.hostIP
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
           value: "http://$(SPLUNK_OTEL_AGENT):4317"
         - name: OTEL_SERVICE_NAME
-          value: "<serviceName>"
+          value: "test1"
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: "deployment.environment=<environmentName>"      
+          value: "deployment.environment=dev"    
         - name: PORT
           value: "50051"
         # - name: DISABLE_STATS
